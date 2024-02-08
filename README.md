@@ -1,5 +1,7 @@
 # marks-calculator
 
+![Screenshot (296)](https://github.com/sandali-singh/marks-calculator/assets/72544086/a2ab9726-56bd-4b15-ad03-8c5c305e6a16)
+
 ## Project setup
 ```
 npm install
