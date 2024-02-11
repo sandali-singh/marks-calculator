@@ -1,74 +1,110 @@
 <template>
   <div id="main">
-    <div class="heading">
-      <h1>Marks Calculator</h1>
-    </div>
     <div class="calc">
-      <div class="input-fields">
-        <form @submit.prevent="calculateResult">
-          <div class="input-field">
-            <label for="name">Student Name:</label>
-            <input type="text" id="name" v-model="name" required />
-          </div>
-          <div class="input-field">
-            <label for="maths">Maths:</label>
-            <input type="number" id="maths" v-model="marks.maths" required />
-          </div>
-          <div class="input-field">
-            <label for="science">Science:</label>
+      <div class="heading">
+        <h1>Marks Calculator</h1>
+      </div>
+
+      <form @submit.prevent="calculateResult">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="name"
+            v-model="name"
+            required
+          />
+          <label for="name">Student Name</label>
+        </div>
+        <div class="input-fields">
+          <div class="form-floating mb-3 group">
             <input
               type="number"
-              id="science"
+              class="form-control"
+              placeholder="hindi"
+              v-model="marks.hindi"
+              required
+            />
+            <label for="hindi">Hindi</label>
+          </div>
+          <div class="form-floating mb-3 group">
+            <input
+              type="number"
+              class="form-control"
+              placeholder="science"
               v-model="marks.science"
               required
             />
+            <label for="science">Science</label>
           </div>
-          <div class="input-field">
-            <label for="english">English:</label>
+          <div class="form-floating mb-3 group">
             <input
               type="number"
-              id="english"
+              class="form-control"
+              placeholder="english"
               v-model="marks.english"
               required
             />
+            <label for="english">English</label>
           </div>
-          <div class="input-field">
-            <label for="hindi">Hindi:</label>
-            <input type="number" id="hindi" v-model="marks.hindi" required />
-          </div>
-          <div class="input-field">
-            <label for="computer">Computer:</label>
+          <div class="form-floating mb-3 group">
             <input
               type="number"
-              id="computer"
+              class="form-control"
+              placeholder="maths"
+              v-model="marks.maths"
+              required
+            />
+            <label for="maths">Maths</label>
+          </div>
+          <div class="form-floating mb-3 group">
+            <input
+              type="number"
+              class="form-control"
+              placeholder="computer"
               v-model="marks.computer"
               required
             />
+            <label for="computer">Computer</label>
           </div>
-          <button type="submit">Calculate Result</button>
-        </form>
-      </div>
-      <div class="show">
-        <div class="result" v-if="result !== null">
-          <h2>Result:</h2>
-          <h3>{{ this.name }}</h3>
-          <p>Total Marks: {{ totalMarks }}</p>
-          <p>CGPA: {{ averageMarks }}</p>
-          <p v-if="percentage !== null && percentage !== undefined">
-            Percentage: {{ percentage.toFixed(2) }}%
-          </p>
-          <p>Grade: {{ grade }}</p>
-          <p v-if="pass">Congratulations! You have passed.</p>
-          <p v-else style="color: red">Sorry! You have failed.</p>
         </div>
-        <div class="grade-system">
-          <p>Result > 90 : "you did great | A"</p>
-          <p>Result > 75: "keep working | B"</p>
-          <p>Result > 60: "can do better | C"</p>
-          <p>Result > 45: "need hard work | D"</p>
-          <p>Result > 33: "Quit studying | F"</p>
+        <div class="bt p-3">
+          <button class="button" type="submit">Calculate Result</button>
         </div>
+      </form>
+    </div>
+    <div class="show">
+      <h3 v-if="result == null">Result:</h3>
+      <div class="result" v-if="result !== null">
+        <h3>Result:</h3>
+        <h3 class="p-3">Name: {{ this.name }}</h3>
+        <ul>
+          <li>
+            <p>Total Marks: {{ totalMarks }}</p>
+          </li>
+          <li>
+            <p v-if="percentage !== null && percentage !== undefined">
+              Percentage: {{ percentage.toFixed(2) }}%
+            </p>
+          </li>
+          <li>
+            <p>Grade: {{ grade }}</p>
+          </li>
+          <li>
+            <p v-if="pass">Congratulations! You have passed.</p>
+            <p v-else style="color: red">Sorry! You have failed.</p>
+          </li>
+        </ul>
       </div>
+    </div>
+    <div class="grade-system">
+      <h3>Grade System:</h3>
+      <br />
+      <p>Result > 90 : "you did great | A"</p>
+      <p>Result > 75: "keep working | B"</p>
+      <p>Result > 60: "can do better | C"</p>
+      <p>Result > 45: "need hard work | D"</p>
+      <p>Result > 33: "Quit studying | F"</p>
     </div>
   </div>
 </template>
@@ -118,7 +154,7 @@ export default {
         return "keep working";
       } else if (percentage >= 60) {
         return "can do better";
-      } else if (percentage >= 45) {
+      } else if (percentage >= 33) {
         return "need hard work";
       } else {
         return "Quit studying";
@@ -135,75 +171,90 @@ export default {
 
 <style>
 #main {
-  padding: 0 140px;
+  padding: 20px;
+  margin: 60px 190px 250px;
+  background-color: #141414;
+  border-radius: 25px;
+  overflow: hidden;
 }
 
 .heading {
   text-align: center;
-  color: #333;
-  font: 2.5em sans-serif;
+  color: white;
+  font: 2.5em poppins;
+  margin: 40px 20px 40px;
 }
 .calc {
-  border: 1px solid #eee;
+  border: 1px solid #333;
   border-radius: 15px;
   padding: 20px;
-  margin-top: 20px;
-  background-color: #92c7cf;
-  max-width: 1200px;
-  box-sizing: border-box;
+  background-color: #1f1f1f;
 }
 
 .input-fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.input-field {
-  display: flex;
-  flex-direction: column;
+input[type="text"],
+input[type="number"] {
+  background: #292929;
+  border: none;
+  border-radius: 15px;
+  color: white;
 }
 
 label {
-  margin-bottom: 5px;
-  color: #555;
+  color: white;
+}
+.group {
+  flex: 1;
+  margin-right: 10px;
+  width: calc(20% - 10px); /* Adjust width to 20% and subtract margin */
 }
 
-input[type="number"] input[type="text"] {
-  padding: 8px;
-  border: 1px solid #ccc;
+.bt {
+  text-align: center;
 }
 
-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.button {
+  padding: 15px 25px;
+  margin: 20px;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 15px;
+  background: #4a8400;
 }
-
 button:hover {
   background-color: #0056b3;
 }
-
-.result {
+.result ul {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: wrap;
+  list-style: none;
+  background: #292929;
+  border-radius: 15px;
+  padding: 30px 20px;
+  margin: 20px;
 }
 
 .result h2 {
   margin-bottom: 10px;
 }
+
 .show {
-  margin-top: 20px;
-  border-top: 1px solid #ccc;
-  padding-top: 10px;
+  margin: 20px 0;
+  padding: 20px;
   width: 100%;
-  color: #555;
+  color: white;
+  background-color: #1f1f1f;
+  border-radius: 15px;
+  border: 1px solid #333;
+}
+.grade-system {
+  color: #757575;
 }
 </style>

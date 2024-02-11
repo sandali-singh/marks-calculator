@@ -21,8 +21,8 @@ body {
 }
 #app {
   height: 100vh; /* Take full viewport height */
-  background-color: #ccc;
+  overflow: auto;
   padding: 0 250px;
-  overflow: hidden;
+  background-image: url("../public/bold.png");
 }
 </style>
